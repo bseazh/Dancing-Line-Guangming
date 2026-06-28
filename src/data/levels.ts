@@ -10,12 +10,12 @@ export const hongqiaoForestLevel: LevelData = {
   title: '红桥穿林',
   artist: 'Guangming Tour',
   version: '虹桥公园主线',
-  coverImage: '/assets/tour/covers/hongqiao.png',
+  coverImage: '/assets/tour/covers/hongqiao.webp',
 
   sceneImages: [
-    { time: 0, image: '/assets/tour/scenes/hongqiao-aerial.png' },
-    { time: 7000, image: '/assets/tour/scenes/hongqiao-bridge-mid.png' },
-    { time: 17600, image: '/assets/tour/scenes/nature-education-center.png' }
+    { time: 0, image: '/assets/tour/scenes/hongqiao-aerial.webp' },
+    { time: 7000, image: '/assets/tour/scenes/hongqiao-bridge-mid.webp' },
+    { time: 17600, image: '/assets/tour/scenes/nature-education-center.webp' }
   ],
 
   lineColor: '#ff4d5f',
@@ -56,16 +56,16 @@ export const hongqiaoForestLevel: LevelData = {
 
   // 触发时机：总时长87920ms 每10%一张（8800ms间隔）
   landmarks: [
-    { time:  8800, label: '入口栈桥',  side: -1, color: '#ff6b76', image: '/landmarks/hongqiao/bridge-wide.png' },
-    { time: 17600, label: '红色虹桥',  side:  1, color: '#ff4d5f', image: '/landmarks/hongqiao/bridge-forest.png' },
-    { time: 26400, label: '桥上观塔',  side: -1, color: '#ff8c42', image: '/landmarks/hongqiao/bridge-tower.png' },
-    { time: 35200, label: '桥头第一视角', side: 1, color: '#ffcf5c', image: '/landmarks/hongqiao/bridge-firstperson.png' },
-    { time: 44000, label: '日落栈道',  side: -1, color: '#ff9f43', image: '/landmarks/hongqiao/bridge-sunset.png' },
-    { time: 52800, label: '月在庭·湖景', side: 1, color: '#57d7ff', image: '/landmarks/hongqiao/moon-lake.png' },
-    { time: 61600, label: '月在庭·航拍', side: -1, color: '#5ac8fa', image: '/landmarks/hongqiao/moon-aerial.png' },
-    { time: 70400, label: '月在庭·庭院', side: 1, color: '#a8e6cf', image: '/landmarks/hongqiao/moon-garden.png' },
-    { time: 79200, label: '日熹阁·黄昏', side: -1, color: '#ffd460', image: '/landmarks/hongqiao/sunshine-loft.png' },
-    { time: 87000, label: '森林全景',  side:  1, color: '#79ff9b', image: '/landmarks/hongqiao/bridge-panorama.png' },
+    { time:  8800, label: '入口栈桥',  side: -1, color: '#ff6b76', image: '/landmarks/hongqiao/bridge-wide.webp' },
+    { time: 17600, label: '红色虹桥',  side:  1, color: '#ff4d5f', image: '/landmarks/hongqiao/bridge-forest.webp' },
+    { time: 26400, label: '桥上观塔',  side: -1, color: '#ff8c42', image: '/landmarks/hongqiao/bridge-tower.webp' },
+    { time: 35200, label: '桥头第一视角', side: 1, color: '#ffcf5c', image: '/landmarks/hongqiao/bridge-firstperson.webp' },
+    { time: 44000, label: '日落栈道',  side: -1, color: '#ff9f43', image: '/landmarks/hongqiao/bridge-sunset.webp' },
+    { time: 52800, label: '月在庭·湖景', side: 1, color: '#57d7ff', image: '/landmarks/hongqiao/moon-lake.webp' },
+    { time: 61600, label: '月在庭·航拍', side: -1, color: '#5ac8fa', image: '/landmarks/hongqiao/moon-aerial.webp' },
+    { time: 70400, label: '月在庭·庭院', side: 1, color: '#a8e6cf', image: '/landmarks/hongqiao/moon-garden.webp' },
+    { time: 79200, label: '日熹阁·黄昏', side: -1, color: '#ffd460', image: '/landmarks/hongqiao/sunshine-loft.webp' },
+    { time: 87000, label: '森林全景',  side:  1, color: '#79ff9b', image: '/landmarks/hongqiao/bridge-panorama.webp' },
   ],
 
   cameraEvents: [
@@ -95,12 +95,12 @@ export const scienceStarshipLevel: LevelData = {
   title: '科学飞船',
   artist: 'Guangming Tour',
   version: '深圳科学技术馆',
-  coverImage: '/assets/tour/covers/science.jpg',
+  coverImage: '/assets/tour/covers/science.webp',
 
   sceneImages: [
-    { time: 0, image: '/assets/tour/scenes/science-museum-wide.png' },
-    { time: 6400, image: '/assets/tour/scenes/science-museum-plaza.png' },
-    { time: 16600, image: '/assets/tour/scenes/science-museum-wide.png' }
+    { time: 0, image: '/assets/tour/scenes/science-museum-wide.webp' },
+    { time: 6400, image: '/assets/tour/scenes/science-museum-plaza.webp' },
+    { time: 16600, image: '/assets/tour/scenes/science-museum-wide.webp' }
   ],
 
   lineColor: '#5af5ff',
@@ -140,16 +140,16 @@ export const scienceStarshipLevel: LevelData = {
 
   // 触发时机：总时长138240ms 每10%一张（13820ms间隔）
   landmarks: [
-    { time: 13800,  label: '科技馆全景', side: -1, color: '#5af5ff', image: '/landmarks/science/museum-aerial.png' },
-    { time: 27600,  label: '鸟瞰全区',   side:  1, color: '#a9f7ff', image: '/landmarks/science/museum-aerial2.png' },
-    { time: 41400,  label: '石材层叠',   side: -1, color: '#57b6ff', image: '/landmarks/science/museum-side-bands.png' },
-    { time: 55200,  label: '有机石壳',   side:  1, color: '#7ec8e3', image: '/landmarks/science/museum-closeup.png' },
-    { time: 69000,  label: '仰视星舰',   side: -1, color: '#c5a3ff', image: '/landmarks/science/museum-worms-eye.png' },
-    { time: 82800,  label: '双馆对比',   side:  1, color: '#d7b0ff', image: '/landmarks/science/museum-two-buildings.png' },
-    { time: 96600,  label: '日景展厅',   side: -1, color: '#a9f7ff', image: '/landmarks/science/museum-daylight.png' },
-    { time: 110400, label: '黄昏光幕',   side:  1, color: '#ffb347', image: '/landmarks/science/museum-dusk-glow.png' },
-    { time: 124200, label: '星舰展厅',   side: -1, color: '#ffd700', image: '/landmarks/science/museum-dusk-wide.png' },
-    { time: 137000, label: '叠层梯台',   side:  1, color: '#5af5ff', image: '/landmarks/science/museum-terraces.jpg' },
+    { time: 13800,  label: '科技馆全景', side: -1, color: '#5af5ff', image: '/landmarks/science/museum-aerial.webp' },
+    { time: 27600,  label: '鸟瞰全区',   side:  1, color: '#a9f7ff', image: '/landmarks/science/museum-aerial2.webp' },
+    { time: 41400,  label: '石材层叠',   side: -1, color: '#57b6ff', image: '/landmarks/science/museum-side-bands.webp' },
+    { time: 55200,  label: '有机石壳',   side:  1, color: '#7ec8e3', image: '/landmarks/science/museum-closeup.webp' },
+    { time: 69000,  label: '仰视星舰',   side: -1, color: '#c5a3ff', image: '/landmarks/science/museum-worms-eye.webp' },
+    { time: 82800,  label: '双馆对比',   side:  1, color: '#d7b0ff', image: '/landmarks/science/museum-two-buildings.webp' },
+    { time: 96600,  label: '日景展厅',   side: -1, color: '#a9f7ff', image: '/landmarks/science/museum-daylight.webp' },
+    { time: 110400, label: '黄昏光幕',   side:  1, color: '#ffb347', image: '/landmarks/science/museum-dusk-glow.webp' },
+    { time: 124200, label: '星舰展厅',   side: -1, color: '#ffd700', image: '/landmarks/science/museum-dusk-wide.webp' },
+    { time: 137000, label: '叠层梯台',   side:  1, color: '#5af5ff', image: '/landmarks/science/museum-terraces.webp' },
   ],
 
   cameraEvents: [
