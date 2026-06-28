@@ -1,6 +1,7 @@
 node_modules/
 dist/
 vnext-dist/
+dist-upload/
 .vnext/
 .agents/
 skills-lock.json

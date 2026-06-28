@@ -45,6 +45,49 @@ npm run dev
 http://127.0.0.1:5188/
 ```
 
+## 按提交模板运行
+
+本项目已按 `socketio-room-basic` 模板补齐服务端入口，可以用 3000 端口启动：
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+健康检查：
+
+```bash
+curl http://127.0.0.1:3000/health
+```
+
+Socket.IO 房间 smoke test：
+
+```bash
+npm run smoke
+```
+
+## Docker 运行
+
+项目根目录包含 `Dockerfile` 和 `docker-compose.yml`，默认服务端口为 `3000`，也可以通过 `PORT` 环境变量调整。
+
+```bash
+docker build -t dancing-line-guangming .
+docker run --rm -p 3000:3000 dancing-line-guangming
+```
+
+或者：
+
+```bash
+docker compose up --build
+```
+
+## 试玩流程
+
+- 单人试玩：打开页面后选择“自动演示”，再选择任意关卡。
+- 游戏挑战：选择“游戏挑战”，点击或按空格键跟随节奏转弯。
+- 多人房间能力：项目保留 Socket.IO 模板的创建/加入房间、准备、开始、输入同步与离线处理接口，便于后续扩展为多人同步玩法。
+
 ## 构建
 
 ```bash
@@ -70,6 +113,20 @@ public/
   landmarks/          地标展示图
   models/             路边装饰 GLB 模型
 docs/screenshots/     README 截图
+```
+
+## 打包提交
+
+按模板要求生成上传 ZIP：
+
+```bash
+npm run package:upload
+```
+
+生成文件位于：
+
+```text
+dist-upload/dancing-line-3d-upload.zip
 ```
 
 ## 部署说明
