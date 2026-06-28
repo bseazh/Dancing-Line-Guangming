@@ -1,0 +1,335 @@
+:root {
+  color: #f6f1df;
+  background: #111312;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Avenir, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #app {
+  width: 100%; height: 100%; overflow: hidden;
+}
+
+body { min-width: 320px; }
+
+#app {
+  position: relative;
+  background: #0a0a0f;
+}
+
+#game-canvas {
+  display: block; width: 100vw; height: 100vh;
+  outline: none; touch-action: none;
+}
+
+/* ── Splash Screen ──────────────────────────────────────── */
+#dl-splash {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#dl-splash.dl-splash--out {
+  opacity: 0; transform: scale(1.05);
+  pointer-events: none;
+}
+
+.dl-splash-bg {
+  position: absolute; inset: 0;
+  background-image: url('/assets/ui/1782531369458-b0d99feb6320d476.png');
+  background-size: cover; background-position: center;
+}
+.dl-splash-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,5,0.25) 0%, rgba(0,0,10,0.55) 100%);
+}
+
+.dl-splash-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  text-align: center;
+}
+
+.dl-splash-title {
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 900; letter-spacing: 0.12em;
+  background: linear-gradient(135deg, #fff 20%, #ff9f43 60%, #ff4d5f);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(255,100,80,0.6));
+}
+
+.dl-splash-sub {
+  font-size: clamp(12px, 2vw, 16px);
+  letter-spacing: 0.25em; color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+}
+
+.dl-splash-line {
+  width: 60px; height: 2px; margin: 8px 0;
+  background: linear-gradient(90deg, transparent, #ff4d5f, #5af5ff, transparent);
+  animation: dl-line-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dl-line-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+.dl-splash-tap {
+  font-size: 13px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.4);
+  animation: dl-tap-blink 2s ease-in-out infinite;
+}
+
+@keyframes dl-tap-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ── Level Select Menu ──────────────────────────────────────── */
+#dl-menu {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#dl-menu.dl-menu--out {
+  opacity: 0; transform: scale(1.04);
+  pointer-events: none;
+}
+
+.dl-menu-bg {
+  position: absolute; inset: 0;
+  background-image: url('/assets/ui/1782531369458-b0d99feb6320d476.png');
+  background-size: cover; background-position: center;
+}
+.dl-menu-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(8,0,25,0.55) 0%, rgba(4,4,14,0.85) 75%);
+  backdrop-filter: blur(3px);
+}
+
+.dl-menu-inner {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 28px;
+  width: min(520px, 92vw);
+  padding: 44px 32px;
+  background: rgba(5,3,18,0.45);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Logo area */
+.dl-logo {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px; text-align: center;
+}
+
+.dl-logo-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, #ff4d5f, #ff9f43);
+  box-shadow: 0 0 28px rgba(255,77,95,0.55), 0 0 60px rgba(255,77,95,0.2);
+  margin-bottom: 4px;
+  position: relative;
+}
+.dl-logo-icon::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px; height: 22px;
+  border: 3px solid rgba(255,255,255,0.9);
+  border-radius: 4px;
+}
+
+.dl-title {
+  font-size: clamp(26px, 5.5vw, 38px);
+  font-weight: 800; letter-spacing: 0.06em;
+  background: linear-gradient(135deg, #fff 30%, #ff9f43);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dl-subtitle {
+  font-size: 12px; letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.32); text-transform: uppercase;
+}
+
+/* Mode toggle */
+.dl-mode {
+  display: flex; gap: 10px; width: 100%;
+}
+.dl-mode-btn {
+  flex: 1; padding: 11px 0; font-size: 13px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  color: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.dl-mode-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.dl-mode-btn--on {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255,77,95,0.28), rgba(255,159,67,0.20));
+  border-color: rgba(255,159,67,0.55);
+  box-shadow: 0 0 14px rgba(255,77,95,0.22);
+}
+
+/* Level cards */
+.dl-levels {
+  display: flex; flex-direction: column; gap: 12px;
+  width: 100%;
+}
+
+.dl-level-card {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; padding: 0; padding-right: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; cursor: pointer;
+  color: #fff; font-family: inherit; text-align: left;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  backdrop-filter: blur(8px);
+}
+.dl-level-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateX(4px);
+}
+.dl-level-card:active { transform: translateX(2px) scale(0.99); }
+
+.dl-card-cover {
+  width: 80px; height: 60px; flex-shrink: 0;
+  background-size: cover; background-position: center;
+  background-color: rgba(255,255,255,0.06);
+  border-radius: 0;
+}
+
+.dl-card-info {
+  flex: 1; display: flex; flex-direction: column; gap: 4px;
+}
+
+.dl-card-title {
+  font-size: 15px; font-weight: 700;
+}
+
+.dl-card-meta {
+  font-size: 11px; color: rgba(255,255,255,0.38);
+  letter-spacing: 0.04em;
+}
+
+.dl-card-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.dl-card-arrow {
+  font-size: 10px; color: rgba(255,255,255,0.28);
+  transition: color 0.2s; margin-left: 6px;
+}
+.dl-level-card:hover .dl-card-arrow { color: rgba(255,255,255,0.7); }
+
+.dl-hint {
+  font-size: 11px; color: rgba(255,255,255,0.18);
+  letter-spacing: 0.07em; text-align: center;
+}
+
+/* ── In-game HUD ────────────────────────────────────────────── */
+#dl-hud {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: max(16px, env(safe-area-inset-top)) 24px 16px;
+  z-index: 50; pointer-events: none;
+}
+
+#dl-hud-left {
+  display: flex; align-items: center; gap: 12px;
+  pointer-events: all;
+}
+
+#dl-back-btn {
+  width: 34px; height: 34px;
+  background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 50%; color: rgba(255,255,255,0.8);
+  font-size: 16px; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s, border-color 0.18s;
+  backdrop-filter: blur(8px);
+}
+#dl-back-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
+
+#dl-hud-name {
+  font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+#dl-hud-hint {
+  font-size: 12px; color: rgba(255,255,255,0.28);
+  letter-spacing: 0.06em; pointer-events: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .dl-menu-inner { padding: 32px 18px; gap: 22px; }
+  .dl-card-cover { width: 64px; height: 50px; }
+  .dl-level-card { padding-right: 14px; }
+}
+
+/* ── In-game overlay: progress bar + cutscenes + flash + vignette ── */
+#dl-overlay { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+
+#dl-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 4px;
+  background: rgba(255,255,255,0.08);
+}
+#dl-progress-fill {
+  height: 100%; width: 0%;
+  background: #ff4d5f;
+  box-shadow: 0 0 10px currentColor;
+  transition: width 0.18s linear;
+}
+#dl-progress-pct {
+  position: fixed; top: 9px; right: 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65); text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+
+#dl-cutscene {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px;
+}
+.dl-cs-card {
+  opacity: 0; transform: translateY(18px) scale(0.96);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  text-align: center; color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.75);
+}
+.dl-cs-card.dl-cs-in { opacity: 1; transform: translateY(0) scale(1); }
+.dl-cs-title {
+  font-size: 52px; font-weight: 800; letter-spacing: 0.12em;
+  padding: 0 0 6px; border-bottom: 3px solid var(--dl-accent, #ff4d5f);
+}
+.dl-cs-caption {
+  font-size: 26px; font-weight: 600; letter-spacing: 0.18em;
+  padding: 8px 22px; border-radius: 999px;
+  background: rgba(0,0,0,0.32);
+  border: 1px solid var(--dl-accent, #ff4d5f);
+}
+
+#dl-flash {
+  position: fixed; inset: 0; opacity: 0;
+  transition: opacity 0.65s ease-out;
+}
+
+#dl-overlay::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 200px 40px rgba(0,0,0,0.55);
+}

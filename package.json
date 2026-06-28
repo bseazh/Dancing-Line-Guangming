@@ -1,0 +1,26 @@
+{
+  "name": "dancing-line-3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5188",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4188"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@rollup/rollup-darwin-arm64": "^4.62.2",
+    "@types/node": "^26.0.1",
+    "@types/pngjs": "^6.0.5",
+    "@types/three": "^0.170.0",
+    "lil-gui": "^0.21.0",
+    "playwright": "^1.61.1",
+    "pngjs": "^7.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3"
+  }
+}
