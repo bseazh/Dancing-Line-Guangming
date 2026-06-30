@@ -8,6 +8,7 @@
     "server": "node server.js",
     "start": "node server.js",
     "build": "tsc && vite build",
+    "build:public": "npm run build && node scripts/sync-public-build.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4188",
     "smoke": "node scripts/smoke.mjs",
     "package:upload": "node scripts/package-upload.mjs"
