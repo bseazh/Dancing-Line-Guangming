@@ -13,7 +13,6 @@ const EXCLUDED_DIRS = new Set([
   '.agents',
   '.vnext',
   '.playwright-cli',
-  'dist',
   'vnext-dist',
   'output',
   'dist-upload',
@@ -145,4 +144,4 @@ const end = Buffer.concat([
 
 fs.writeFileSync(outFile, Buffer.concat([...chunks, centralBuf, end]));
 console.log(`Created ${path.relative(root, outFile)} (${files.length} files, ${(fs.statSync(outFile).size / 1024 / 1024).toFixed(2)} MB)`);
-console.log('Excluded: node_modules, .git, .agents, .vnext, dist, vnext-dist, dist-upload, .DS_Store, *.log, existing *.zip');
+console.log('Excluded: node_modules, .git, .agents, .vnext, vnext-dist, dist-upload, .DS_Store, *.log, existing *.zip');
