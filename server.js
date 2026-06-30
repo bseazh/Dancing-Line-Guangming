@@ -28,9 +28,11 @@ const io = new Server(server, {
 
 app.use(express.static(STATIC_DIR));
 app.use((req, res, next) => {
-  const match = req.path.match(/\/(assets|landmarks|models)\/(.*)$/);
+  const match = req.path.match(/\/(assets|landmarks|models)\/(.*)$|\/(DEPLOY_VERSION\.txt)$/);
   if (!match) return next();
-  const filePath = path.join(STATIC_DIR, match[1], match[2]);
+  const filePath = match[3]
+    ? path.join(STATIC_DIR, match[3])
+    : path.join(STATIC_DIR, match[1], match[2]);
   if (!fs.existsSync(filePath)) return next();
   res.sendFile(filePath);
 });
@@ -38,6 +40,7 @@ app.get('/health', (_req, res) => {
   res.json({
     ok: true,
     service: 'dancing-line-guangming',
+    build: 'subpath-assets-20260630',
     rooms: rooms.size,
     staticDir: path.basename(STATIC_DIR),
     uptime: process.uptime(),
