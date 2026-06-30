@@ -48,6 +48,25 @@ function listFiles(dir, base = dir) {
   return out.sort((a, b) => a.rel.localeCompare(b.rel));
 }
 
+function listUploadFiles() {
+  const byRel = new Map();
+
+  for (const file of listFiles(root)) {
+    byRel.set(file.rel, file);
+  }
+
+  const distDir = path.join(root, 'dist');
+  if (!fs.existsSync(path.join(distDir, 'index.html'))) {
+    throw new Error('Missing dist/index.html. Run npm run build before packaging.');
+  }
+
+  for (const file of listFiles(distDir)) {
+    byRel.set(file.rel, file);
+  }
+
+  return Array.from(byRel.values()).sort((a, b) => a.rel.localeCompare(b.rel));
+}
+
 const crcTable = new Uint32Array(256);
 for (let n = 0; n < 256; n++) {
   let c = n;
@@ -81,7 +100,7 @@ function u32(n) {
 }
 
 fs.mkdirSync(outDir, { recursive: true });
-const files = listFiles(root);
+const files = listUploadFiles();
 const chunks = [];
 const central = [];
 let offset = 0;
@@ -144,4 +163,5 @@ const end = Buffer.concat([
 
 fs.writeFileSync(outFile, Buffer.concat([...chunks, centralBuf, end]));
 console.log(`Created ${path.relative(root, outFile)} (${files.length} files, ${(fs.statSync(outFile).size / 1024 / 1024).toFixed(2)} MB)`);
+console.log('Upload root is overlaid with dist/index.html and built static assets for static-host compatibility.');
 console.log('Excluded: node_modules, .git, .agents, .vnext, vnext-dist, dist-upload, .DS_Store, *.log, existing *.zip');
