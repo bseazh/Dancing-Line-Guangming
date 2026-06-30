@@ -2,6 +2,8 @@ import './styles.css';
 import { DancingLineGame } from './game/DancingLineGame';
 import { allLevels } from './data/levels';
 
+console.info('Dancing Line Guangming build subpath-assets-20260630-public-template');
+
 const canvas = document.querySelector<HTMLCanvasElement>('#game-canvas');
 if (!canvas) throw new Error('Missing #game-canvas');
 
