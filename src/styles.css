@@ -39,7 +39,7 @@ body { min-width: 320px; }
 
 .dl-splash-bg {
   position: absolute; inset: 0;
-  background-image: url('/assets/ui/1782531369458-b0d99feb6320d476.webp');
+  background-image: url('./ui/1782531369458-b0d99feb6320d476.webp');
   background-size: cover; background-position: center;
 }
 .dl-splash-bg::after {
@@ -104,7 +104,7 @@ body { min-width: 320px; }
 
 .dl-menu-bg {
   position: absolute; inset: 0;
-  background-image: url('/assets/ui/1782531369458-b0d99feb6320d476.webp');
+  background-image: url('./ui/1782531369458-b0d99feb6320d476.webp');
   background-size: cover; background-position: center;
 }
 .dl-menu-bg::after {
